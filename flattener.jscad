@@ -1,3 +1,7 @@
+//
+// WARNING! WARNING! Badly hacked by Laust Frederiksen!! WARNING! WARNING!
+//
+//
 // This file demonstrates "flattening" of a 3D model (specified as
 // vertices+triangles) into a 2D image that can hopefully be cut out
 // of a sheet of paper/cardboard and folded to reassemble the original
