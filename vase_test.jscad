@@ -72,13 +72,15 @@ console.profile('main');
 		model.points = model.points.map(t => [t[0]*0.75, t[1]*0.75, t[2]*0.75 + 25]);
 	}
 	
-	if (params.model == 'sphere') {
-		model.points = model.points.map(t => [t[0]*3, t[1]*4, t[2]*5 + 15]);
+	if (params.model == 'sphere' ) {
+		model.points = model.points.map(t => [t[0]*4, t[1]*4, t[2]*4 + 15]);
 	}
 	
-		
+	if (params.model == 'bowl') {
+		model.points = model.points.map(t => [t[0]*3, t[1]*3, t[2]*4 + 15]);
+	}
 	
-	return 	return (params.includeLabels && params.show3D) ? number_polyhedron(model) :
+	return (params.includeLabels && params.show3D) ? number_polyhedron(model) :
 	        params.show3D ? polyhedron(model) : flatten(model);
 	
  console.profileEnd('main');	
@@ -367,7 +369,7 @@ function flatten(params) {
 
 function number_polyhedron(params) {
     
-	const D = polyhedron(simplifyGeometry(params)).rotateX(1).scale(25) .translate([0,0,25]);
+	const D = polyhedron(simplifyGeometry(params)).rotateX(1);
 
 
 	var R = [];
