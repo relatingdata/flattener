@@ -59,8 +59,28 @@ console.profile('main');
           params.model == 'vase' ? vase() :
           params.model == 'twopyramids' ? twopyramids() :
           die('Unexpected model!');
-
-	return params.show3D ? number_polyhedron(model) : flatten(model);
+	
+	if (params.model == 'vase' || params.model == 'sphere' ) {
+		model.triangles = model.triangles.map(t => [t[0],t[2],t[1]]);
+	}
+	
+	if (params.model == 'vase') {
+		model.points = model.points.map(t => [t[0]*30, t[1]*30, t[2]*30 + 30]);
+	}
+	
+	if (params.model == 'duck') {
+		model.points = model.points.map(t => [t[0]*0.75, t[1]*0.75, t[2]*0.75 + 25]);
+	}
+	
+	if (params.model == 'sphere') {
+		model.points = model.points.map(t => [t[0]*3, t[1]*4, t[2]*5 + 15]);
+	}
+	
+		
+	
+	return 	return (params.includeLabels && params.show3D) ? number_polyhedron(model) :
+	        params.show3D ? polyhedron(model) : flatten(model);
+	
  console.profileEnd('main');	
 }
 
@@ -77,7 +97,7 @@ function flatten(params) {
 	
 	// return polyhedron(params);
 
-	const vertices = params.points.map(t => [t[0]*25, t[1]*25, t[2]*25]);
+	const vertices = params.points; // .map(t => [t[0]*25, t[1]*25, t[2]*25]);
 	let triangles = params.triangles;
 
 //	console.log("triangles:",triangles.length,JSON.stringify(triangles),"\n\n");
