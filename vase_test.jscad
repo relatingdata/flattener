@@ -23,6 +23,67 @@
 // Create the polyhedron//polygons and then pull them apart ??
 //
 
+//from https://gist.github.com/gordonwoodhull
+
+function line_intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+
+    var s1_x, s1_y, s2_x, s2_y;
+    s1_x = p1_x - p0_x;
+    s1_y = p1_y - p0_y;
+    s2_x = p3_x - p2_x;
+    s2_y = p3_y - p2_y;
+
+    var s, t;
+    s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+    t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+
+    if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
+    {
+        // Collision detected
+        return 1;
+    }
+
+    return 0; // No collision
+}
+
+/*
+var eps = 0.0000001;
+function between(a, b, c) {
+    return a-eps <= b && b <= c+eps;
+}
+function segment_intersection(x1,y1,x2,y2, x3,y3,x4,y4) {
+    var x=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4)) /
+            ((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));
+    var y=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4)) /
+            ((x1-x2)*(y3-y4)-(y1-y2)*(x3-x4));
+    if (isNaN(x)||isNaN(y)) {
+        return false;
+    } else {
+        if (x1>=x2) {
+            if (!between(x2, x, x1)) {return false;}
+        } else {
+            if (!between(x1, x, x2)) {return false;}
+        }
+        if (y1>=y2) {
+            if (!between(y2, y, y1)) {return false;}
+        } else {
+            if (!between(y1, y, y2)) {return false;}
+        }
+        if (x3>=x4) {
+            if (!between(x4, x, x3)) {return false;}
+        } else {
+            if (!between(x3, x, x4)) {return false;}
+        }
+        if (y3>=y4) {
+            if (!between(y4, y, y3)) {return false;}
+        } else {
+            if (!between(y3, y, y4)) {return false;}
+        }
+    }
+    return {x: x, y: y};
+}
+
+*/
 
 function getParameterDefinitions() {
 	return 	[
