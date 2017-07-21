@@ -72,12 +72,12 @@ console.profile('main');
 		model.points = model.points.map(t => [t[0]*0.75, t[1]*0.75, t[2]*0.75 + 25]);
 	}
 	
-	if (params.model == 'sphere' ) {
-		model.points = model.points.map(t => [t[0]*4, t[1]*4, t[2]*4 + 15]);
+	if (params.model == 'sphere' || params.model == 'teddy' ) {
+		model.points = model.points.map(t => [t[0]*2.5, t[1]*2.5, t[2]*2.5 + 15]);
 	}
 	
 	if (params.model == 'bowl') {
-		model.points = model.points.map(t => [t[0]*3, t[1]*3, t[2]*4 + 15]);
+		model.points = model.points.map(t => [t[0]*3, t[1]*3, t[2]*3 + 15]);
 	}
 	
 	return (params.includeLabels && params.show3D) ? number_polyhedron(model) :
