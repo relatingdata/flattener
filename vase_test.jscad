@@ -437,15 +437,15 @@ function number_polyhedron(params) {
 
 	D.polygons.map((t,i) => {
 
-		const p = CSG.fromPolygons([t]);
+		// const p = CSG.fromPolygons([t]);
            
-		const v = [0, 1, 2].map((s,j) => p.polygons[0].vertices[j].pos);
+		const v = [0, 1, 2].map((s,j) => /* p.polygons[0] */ t.vertices[j].pos);
     
 		const s = v[1].minus(v[0]);
 		const m = v[0].plus(s.times(1/2));
 		const c = m.plus(v[2].minus(m).times(1/3));
 		
-		const tC = new CSG.Connector(v[0], s, p.polygons[0].plane.normal);
+		const tC = new CSG.Connector(v[0], s, /* p.polygons[0] */ t.plane.normal);
 		const z0xC = new CSG.Connector([0, 0, 0], [s.length(), 0, 0], [0, 0, 1]);
 
 		const tf = z0xC.getTransformationTo(tC, false, 0);
