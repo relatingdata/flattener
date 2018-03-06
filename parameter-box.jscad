@@ -1,3 +1,4 @@
+
 let main = () => {
 
 "use strict"; 
@@ -19,26 +20,18 @@ let main = () => {
 
  const wt = () => { };
  const lt = () => { };
- const ht = () => { };
+ const ht = union(
+             cube({size: [ts,  t, t], center: true}).translate([   0,  w/2 - t/2, 0]),
+             cube({size: [ts,  t, t], center: true}).translate([   0, -w/2 + t/2, 0]),
+             cube({size: [ t, ts, t], center: true}).translate([ l/2,          0, 0]),
+             cube({size: [ t, ts, t], center: true}).translate([-l/2,          0, 0]));
 
 
  return union(
   color("red",
-   difference(
-    hs.translate([0,0,h/2]),
-    union(
-     cube({size: [ts,  t, t], center: true}).translate([   0,  w/2 - t/2, h/2]),
-     cube({size: [ts,  t, t], center: true}).translate([   0, -w/2 + t/2, h/2]),
-     cube({size: [ t, ts, t], center: true}).translate([ l/2,          0, h/2]),
-     cube({size: [ t, ts, t], center: true}).translate([-l/2,          0, h/2])))),
+   difference(hs, ht).translate([0,0,h/2])),
   color("red",
-   difference(
-    hs.translate([0,0,-h/2]),
-    union(
-     cube({size: [ts,t,t], center: true}).translate([0,w/2-t/2,-h/2]),
-     cube({size: [ts,t,t], center: true}).translate([0,-w/2+t/2,-h/2]),
-     cube({size: [t,ts,t], center: true}).translate([l/2,0,-h/2]),
-     cube({size: [t,ts,t], center: true}).translate([-l/2,0,-h/2])))),
+   difference(hs, ht).translate([0,0,-h/2])),
   color("blue",
    union(
     ws.translate([0,w/2-t/2,0]),
